@@ -1,0 +1,24 @@
+YAML config files processed by Hydra
+    https://hydra.cc/docs/intro/
+to select search topics.
+
+google search via SerpAPI:
+    https://serpapi.com
+    (news, search "as if from ...")
+or RSS feeds (for tax law, ...)
+
+get links
+use doc_loader to load part of the text
+tag it with categories, date, title, summary
+make embeddings using OpenAI model
+Store in qdrant vector database
+
+filter - remove duplicates (by similarity)
+filter - remove historical duplicates
+filter - removed mis-labeled articles
+select top 5 results
+add commentary (this is relevant because ...)
+format, send
+
+model: gpt-4-turbo
+linux on amazon.
