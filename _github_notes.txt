@@ -1,24 +1,29 @@
-YAML config files processed by Hydra
+automatic weekly newsletter
+
+Linux server
+OpenAI API using gpt-4-turbo
+python + langchain
+vector database  "qdrant"
+    https://qdrant.tech
+config files using Hydra:
     https://hydra.cc/docs/intro/
-to select search topics.
-
-google search via SerpAPI:
+google search using SerpAPI:
     https://serpapi.com
-    (news, search "as if from ...")
-or RSS feeds (for tax law, ...)
+RSS search using API
 
-get links
-use doc_loader to load part of the text
-tag it with categories, date, title, summary
-make embeddings using OpenAI model
-Store in qdrant vector database
-
-filter - remove duplicates (by similarity)
-filter - remove historical duplicates
-filter - removed mis-labeled articles
-select top 5 results
-add commentary (this is relevant because ...)
-format, send
-
-model: gpt-4-turbo
-linux on amazon.
+process:
+  get searches from config files (in English)
+  run searches using serpapi to get 15 top links
+  load 3,000 characters of the text for each link
+  LLM gpt 4.0 to parse text into a pydantic object
+                 link, date, title, summary,
+                 preliminary boolean relevance score
+  ?? categorize (tag it with categories) - how this is done ??
+  make embeddings using OpenAI model (1536 dim vector)
+  remove duplicates (compare embeddings)
+  remove historic duplicates (compare embeddings to those stored in vector DB)
+  LLM - remove mis-labeled articles
+  select top 5 results
+  LLM - form final text, add commentary (this article is relevant because ...)
+  format
+  send
