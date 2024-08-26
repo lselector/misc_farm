@@ -1,0 +1,29 @@
+automatic weekly newsletter
+
+Linux server
+OpenAI API using gpt-4-turbo
+python + langchain
+vector database  "qdrant"
+    https://qdrant.tech
+config files using Hydra:
+    https://hydra.cc/docs/intro/
+google search using SerpAPI:
+    https://serpapi.com
+RSS search using API
+
+process:
+  get searches from config files (in English)
+  run searches using serpapi to get 15 top links
+  load 3,000 characters of the text for each link
+  LLM gpt 4.0 to parse text into a pydantic object
+                 link, date, title, summary,
+                 preliminary boolean relevance score
+  ?? categorize (tag it with categories) - how this is done ??
+  make embeddings using OpenAI model (1536 dim vector)
+  remove duplicates (compare embeddings)
+  remove historic duplicates (compare embeddings to those stored in vector DB)
+  LLM - remove mis-labeled articles
+  select top 5 results
+  LLM - form final text, add commentary (this article is relevant because ...)
+  format
+  send
